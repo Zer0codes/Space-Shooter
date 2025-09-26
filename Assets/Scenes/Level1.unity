@@ -369,6 +369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d0bb4f87042e9c468fcda5c132cf363, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  whiteMaterial: {fileID: 2100000, guid: 9d2c68ce37009ac4fa6d7a45efc4e258, type: 2}
   moveSpeed: 3
   boost: 1
   energy: 0

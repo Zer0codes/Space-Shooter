@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Asteroid : MonoBehaviour
@@ -5,11 +6,15 @@ public class Asteroid : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
 
+    private Material defaultMaterial;
+    [SerializeField] private Material whiteMaterial;
+
     [SerializeField] private Sprite[] sprites;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+            defaultMaterial = spriteRenderer.material;
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer.sprite = sprites[Random.Range(0, sprites.Length)];
         float pushX = Random.Range(-1f, 0);
@@ -26,5 +31,17 @@ public class Asteroid : MonoBehaviour
         if (transform.position.x < -11f) {
             Destroy(gameObject);
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.CompareTag("Player")) {
+            spriteRenderer.material = whiteMaterial;
+            StartCoroutine("ResetMaterial");
+        }
+
+    }
+    IEnumerator ResetMaterial() {
+        yield return new WaitForSeconds(0.2f);
+        spriteRenderer.material = defaultMaterial;
     }
 }
