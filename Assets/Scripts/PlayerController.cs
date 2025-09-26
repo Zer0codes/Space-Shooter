@@ -65,6 +65,10 @@ public class PlayerController : MonoBehaviour
             } else if (Input.GetKeyUp(KeyCode.Space) || Input.GetButtonUp("Fire2")) {
                 ExitBoost();
             }
+
+            if (Input.GetKeyDown(KeyCode.F) || Input.GetButtonDown("Fire1")) {
+                PhaserWeapon.Instance.Shoot();
+            }
         }
     }
 
