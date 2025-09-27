@@ -48,6 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   whiteMaterial: {fileID: 2100000, guid: 9d2c68ce37009ac4fa6d7a45efc4e258, type: 2}
+  destroyEffect: {fileID: 4781282734755030613, guid: e0a8f8fdfc2506d42b22f75d1151e420, type: 3}
+  lives: 5
   sprites:
   - {fileID: 2357709100146644040, guid: 32c820cbdd42e2441a06e866757c6283, type: 3}
   - {fileID: -1746733698, guid: 32c820cbdd42e2441a06e866757c6283, type: 3}
