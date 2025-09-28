@@ -7836,17 +7836,17 @@ MonoBehaviour:
   waves:
   - prefab: {fileID: 580717405124439586, guid: 89f700b3a3e1d76449ff538b3cf8276e, type: 3}
     spawnTimer: 0
-    spawnInterval: 2
+    spawnInterval: 1
     objectsPerWave: 10
     spawnedObjectCount: 0
   - prefab: {fileID: 248164991140101360, guid: df9ab577cc8369b44b011cbe3bbb7b38, type: 3}
     spawnTimer: 0
     spawnInterval: 5
-    objectsPerWave: 1
+    objectsPerWave: 0
     spawnedObjectCount: 0
   - prefab: {fileID: 580717405124439586, guid: 89f700b3a3e1d76449ff538b3cf8276e, type: 3}
     spawnTimer: 0
-    spawnInterval: 3
+    spawnInterval: 2
     objectsPerWave: 1
     spawnedObjectCount: 0
 --- !u!4 &1431268340
@@ -7991,13 +7991,13 @@ MonoBehaviour:
   waves:
   - prefab: {fileID: 2822671932499001423, guid: b949906c19fe9de4caefcddb990d08ac, type: 3}
     spawnTimer: 0
-    spawnInterval: 1
+    spawnInterval: 2
     objectsPerWave: 3
     spawnedObjectCount: 0
   - prefab: {fileID: 2822671932499001423, guid: b949906c19fe9de4caefcddb990d08ac, type: 3}
     spawnTimer: 0
-    spawnInterval: 0.2
-    objectsPerWave: 10
+    spawnInterval: 1
+    objectsPerWave: 5
     spawnedObjectCount: 0
 --- !u!4 &1480275806
 Transform:
@@ -9139,7 +9139,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 1bde4fec80d021c47b5eda611153c747, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
