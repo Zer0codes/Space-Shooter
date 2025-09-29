@@ -37,20 +37,28 @@ public class Asteroid : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.CompareTag("Player")|| collision.gameObject.
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.
             CompareTag("Bullet")) {
-            spriteRenderer.material = whiteMaterial;
-            StartCoroutine("ResetMaterial");
-            AudioManager.Instance.PlayModifiedSound(AudioManager.Instance.hitRock);
-            lives--;
-            if (lives <= 0) {
-                Instantiate(destroyEffect, transform.position, transform.rotation);
-                AudioManager.Instance.PlayModifiedSound(AudioManager.Instance.boom2);
-                Destroy(gameObject);
-            }
+            TakeDamage(1);
+        } else if (collision.gameObject.CompareTag("Boss")){
+            TakeDamage(1);
         }
 
     }
+
+    public void TakeDamage(int damage) {
+        spriteRenderer.material = whiteMaterial;
+        StartCoroutine("ResetMaterial");
+        AudioManager.Instance.PlayModifiedSound(AudioManager.Instance.hitRock);
+        lives-=damage;
+        if (lives <= 0) {
+            Instantiate(destroyEffect, transform.position, transform.rotation);
+            AudioManager.Instance.PlayModifiedSound(AudioManager.Instance.boom2);
+            Destroy(gameObject);
+        }
+    }
+
+
     IEnumerator ResetMaterial() {
         yield return new WaitForSeconds(0.2f);
         spriteRenderer.material = defaultMaterial;
