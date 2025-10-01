@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3516481915258427814}
+  - component: {fileID: -4074490241912053669}
+  - component: {fileID: 7480542351926282242}
   - component: {fileID: 5374093584606142442}
   - component: {fileID: 351106568071861700}
   - component: {fileID: 5921413661713566522}
@@ -35,6 +37,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-4074490241912053669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 580717405124439586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6415bee14f40b48a8f0c7f6c244713, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7480542351926282242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 580717405124439586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f6974f9f88fdd444a0fbc5e27854719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5374093584606142442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47,7 +73,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea8bcc12a65ec1a4aa8ee724e21dfdfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whiteMaterial: {fileID: 2100000, guid: 9d2c68ce37009ac4fa6d7a45efc4e258, type: 2}
   destroyEffect: {fileID: 4781282734755030613, guid: e0a8f8fdfc2506d42b22f75d1151e420, type: 3}
   lives: 5
   sprites:

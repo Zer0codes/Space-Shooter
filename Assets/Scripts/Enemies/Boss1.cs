@@ -15,16 +15,19 @@ public class Boss1 : MonoBehaviour
     {
         lives = 100;
         animator = GetComponent<Animator>();
-       EnterChargeState();
+        EnterChargeState();
+        AudioManager.Instance.playsound(AudioManager.Instance.bossSpawn);
+
     }
 
-    
-    void Update()
-    {
+
+    void Update() {
+        float playerPosition = PlayerController.Instance.transform.position.x;
+
         if (switchTimer > 0) {
             switchTimer -= Time.deltaTime;
         } else {
-            if (charging) {
+            if (charging && transform.position.x > playerPosition) {
                 EnterPatrolState();
             } else {
                 EnterChargeState();
@@ -33,35 +36,47 @@ public class Boss1 : MonoBehaviour
 
         if (transform.position.y > 3 || transform.position.y < -3) {
             speedY *= -1;
+        } else if (transform.position.x < playerPosition) {
+            EnterChargeState();
         }
 
-        float moveX = speedX * PlayerController.Instance.boost * Time.deltaTime;
+        bool boost = PlayerController.Instance.boosting;
+        float moveX;
+        if (boost && !charging) {
+            moveX = GameManager.Instance.worldSpeed * Time.deltaTime * -0.5f;
+        } else {
+            moveX = speedX * Time.deltaTime;
+        }
         float moveY = speedY * Time.deltaTime;
-        transform.position += new Vector3(moveX,moveY);
-        if (transform.position.x < -11f) {
+
+        transform.position += new Vector3(moveX, moveY);
+        if (transform.position.x < -11) {
             Destroy(gameObject);
         }
     }
 
     void EnterPatrolState() {
-        speedX = 0;
-        speedY = Random.Range(-2f, 2f);
-        switchInterval = Random.Range(5f, 10f);
-        switchTimer = switchInterval;
-        charging = false;
-        animator.SetBool("charging", false);
+            speedX = 0;
+            speedY = Random.Range(-2f, 2f);
+            switchInterval = Random.Range(5f, 10f);
+            switchTimer = switchInterval;
+            charging = false;
+            animator.SetBool("charging", false);
 
     }
 
     void EnterChargeState() {
-        speedX = -5f;
-        speedY = 0;
-        switchInterval = Random.Range(2, 2.5f);
-        switchTimer = switchInterval;
-        charging = true;
-        animator.SetBool("charging", true);
-        AudioManager.Instance.PlayModifiedSound(AudioManager.Instance.bossCharge);
+            if (!charging) AudioManager.Instance.playsound(AudioManager.Instance.
+            bossCharge);
+            speedX = -10f;
+            speedY = 0;
+            switchInterval = Random.Range(0.6f, 1.3f);
+            switchTimer = switchInterval;
+            charging = true;
+            animator.SetBool("charging", true);
     }
+
+    
 
     public void TakeDamage(int damage) {
         AudioManager.Instance.PlayModifiedSound(AudioManager.Instance.hitArmor);

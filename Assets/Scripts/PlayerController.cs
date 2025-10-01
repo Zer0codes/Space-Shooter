@@ -7,17 +7,15 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
     private Animator animator;
-    private SpriteRenderer spriteRenderer;
+    private FlashWhite flashWhite;
+    
 
-    private Material defaultMaterial;
-    [SerializeField] private Material whiteMaterial;
+    
 
 
     private Vector2 playerDirection;
     [SerializeField] private float moveSpeed;
-    public float boost = 1f;
-    private float boostPower = 4f;
-    private bool boosting = false;
+    public bool boosting = false;
 
 
     [SerializeField] private float energy;
@@ -39,10 +37,9 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-      rb = GetComponent<Rigidbody2D>();
-      animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        defaultMaterial = spriteRenderer.material;
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        flashWhite = GetComponent<FlashWhite>();
         energy = maxEnergy;
         UIController.Instance.UpdateEnergySlider(energy, maxEnergy);
         health = maxHealth;
@@ -94,7 +91,7 @@ public class PlayerController : MonoBehaviour
         if (energy > 10) {
             AudioManager.Instance.playsound(AudioManager.Instance.fire);
             animator.SetBool("boosting", true);
-            boost = boostPower;
+            GameManager.Instance.SetWorldSpeed(7f);
             boosting = true;
             engineEffect.Play();
         }
@@ -102,7 +99,7 @@ public class PlayerController : MonoBehaviour
 
     public void ExitBoost() {
         animator.SetBool("boosting", false);
-        boost = 1f;
+        GameManager.Instance.SetWorldSpeed(1f);
         boosting = false;
     }
 
@@ -118,10 +115,10 @@ public class PlayerController : MonoBehaviour
         health -= damage;
         UIController.Instance.UpdateHealthSlider(health, maxHealth);
         AudioManager.Instance.playsound(AudioManager.Instance.hit);
-        spriteRenderer.material = whiteMaterial;
-        StartCoroutine("ResetMaterial");
+        flashWhite.Flash();
         if (health <= 0) {
-            boost = 0f;
+            ExitBoost();
+            GameManager.Instance.SetWorldSpeed(0f);
             gameObject.SetActive(false);
             Instantiate(destroyEffect, transform.position, transform.rotation);
             GameManager.Instance.GameOver();
@@ -129,8 +126,4 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    IEnumerator ResetMaterial() {
-        yield return new WaitForSeconds(0.2f);
-        spriteRenderer.material = defaultMaterial;
-    }
 }

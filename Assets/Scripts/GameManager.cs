@@ -62,9 +62,13 @@ public class GameManager : MonoBehaviour {
     }
 
     IEnumerator ShowGameOverScreen() {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene("GameOver");
 
+    }
+
+    public void SetWorldSpeed(float speed) {
+        worldSpeed = speed;
     }
 
 
